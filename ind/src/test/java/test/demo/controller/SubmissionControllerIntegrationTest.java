@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application.properties")
 public class SubmissionControllerIntegrationTest {
 
     @Autowired
@@ -34,6 +34,7 @@ public class SubmissionControllerIntegrationTest {
         request.setInfo("Valid info string");
 
         mockMvc.perform(post("/api/v1/submissions")
+                .header("simple-auth", "admin")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -54,6 +55,7 @@ public class SubmissionControllerIntegrationTest {
                 """;
 
         mockMvc.perform(post("/api/v1/submissions")
+                .header("simple-auth", "admin")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(invalidJson))
                 .andExpect(status().isBadRequest());
@@ -69,6 +71,7 @@ public class SubmissionControllerIntegrationTest {
         request.setInfo("A".repeat(141));
 
         mockMvc.perform(post("/api/v1/submissions")
+                .header("simple-auth", "admin")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
