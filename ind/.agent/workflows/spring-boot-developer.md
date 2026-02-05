@@ -2,6 +2,12 @@
 description: Develops Spring Boot applications
 ---
 
+**IMPORTANT**: To use the correct version of Java, run:
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+```
+before doing any `mvn` command.
+
 ## Tools and dependencies
 
 - Spring 4.0.1
@@ -17,9 +23,4 @@ description: Develops Spring Boot applications
 ## Run project
 ```bash
 docker-compose up -d --build
-```
-
-## Test project
-```bash
-docker run --rm -v $(pwd):/app -w /app maven:3.9-eclipse-temurin-17 mvn test
 ```
