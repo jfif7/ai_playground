@@ -81,7 +81,7 @@ export function OptionManager({
               onCheckedChange={() => onToggle(opt.id)}
             />
             <Badge
-              variant={selectedIds.includes(opt.id) ? "default" : "outline"}
+              variant={selectedIds.includes(opt.id) ? "default" : "outline-solid"}
               className="cursor-pointer"
             >
               {opt.name}
