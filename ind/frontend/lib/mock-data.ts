@@ -1,4 +1,21 @@
-import type { Organization, EsgDirection, Category, EsgEvent, Submission } from "./types"
+import type { Organization, EsgDirection, Category, EsgEvent, Submission, User } from "./types"
+
+let nextUserId = 6
+
+export const users: User[] = [
+  { id: 1, name: "Alice Chen", email: "alice@example.com", isAdmin: true },
+  { id: 2, name: "Bob Martinez", email: "bob@example.com", isAdmin: true },
+  { id: 3, name: "Carol Johnson", email: "carol@example.com", isAdmin: false },
+  { id: 4, name: "David Kim", email: "david@example.com", isAdmin: false },
+  { id: 5, name: "Eva Schmidt", email: "eva@example.com", isAdmin: false },
+]
+
+export function setUserAdmin(id: number, isAdmin: boolean): User | null {
+  const user = users.find((u) => u.id === id)
+  if (!user) return null
+  user.isAdmin = isAdmin
+  return user
+}
 
 let nextOrgId = 4
 let nextDirId = 4

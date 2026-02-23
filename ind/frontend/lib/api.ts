@@ -4,6 +4,7 @@ import type {
   Category,
   EsgEvent,
   Submission,
+  User,
 } from "./types"
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "/api/v1"
@@ -105,3 +106,13 @@ export const updateSubmission = (id: number, formData: FormData) =>
 
 export const deleteSubmission = (id: number) =>
   request<void>(`/submissions/${id}`, { method: "DELETE" })
+
+// Users
+export const fetchUsers = () =>
+  request<User[]>("/users")
+
+export const setUserAdmin = (id: number, isAdmin: boolean) =>
+  request<User>(`/users/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify({ isAdmin }),
+  })

@@ -1,5 +1,12 @@
 export type UserRole = "participant" | "admin"
 
+export interface User {
+  id: number
+  name: string
+  email: string
+  isAdmin: boolean
+}
+
 export interface Organization {
   id: number
   name: string

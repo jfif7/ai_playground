@@ -9,6 +9,7 @@ import {
   fetchAllEvents,
   fetchSubmissions,
   fetchAllSubmissions,
+  fetchUsers,
 } from "./api"
 
 export function useOrganizations() {
@@ -37,4 +38,8 @@ export function useSubmissions() {
 
 export function useAllSubmissions() {
   return useSWR("allSubmissions", fetchAllSubmissions)
+}
+
+export function useUsers() {
+  return useSWR("users", fetchUsers)
 }
