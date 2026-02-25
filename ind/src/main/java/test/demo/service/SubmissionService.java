@@ -2,9 +2,13 @@ package test.demo.service;
 
 import test.demo.dto.SubmissionRequest;
 import test.demo.model.Submission;
+import test.demo.model.TeamMember;
 import test.demo.repository.SubmissionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +23,18 @@ public class SubmissionService {
                 .organization(request.getOrganization())
                 .info(request.getInfo())
                 .build();
+
+        if (request.getTeamMembers() != null) {
+            List<TeamMember> members = request.getTeamMembers().stream()
+                    .map(dto -> TeamMember.builder()
+                            .name(dto.getName())
+                            .companyId(dto.getCompanyId())
+                            .submission(submission)
+                            .build())
+                    .collect(Collectors.toList());
+            submission.getTeamMembers().addAll(members);
+        }
+
         return repository.save(submission);
     }
 }

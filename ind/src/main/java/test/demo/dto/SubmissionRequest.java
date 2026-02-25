@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class SubmissionRequest {
 
@@ -20,4 +23,7 @@ public class SubmissionRequest {
 
     @Size(max = 140, message = "Info must be within 140 characters")
     private String info;
+
+    @Size(max = 4, message = "A submission can have at most 4 team members")
+    private List<TeamMemberRequest> teamMembers = new ArrayList<>();
 }
